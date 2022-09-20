@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if item %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input name="item" type='text' id='search' class="form-control search-form" placeholder="{{ item.item }}" value="{{ item.item }}">
+            <input type="hidden" value="{{ item.completed }}" name="completed">
+            <button type="submit">edit item</button>
+        </form>
+    {% endif %}
+
+{% endblock %}
