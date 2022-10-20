@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <style>
     .login-dark {
         height: 650px;
@@ -88,26 +89,33 @@
                 <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
               </svg>
         </div>
-        <div class="form-group"><input class="form-control" type="username" name="username" placeholder="username"></div>
+        <div class="form-group">{{ form.username }}</div>
         <br>
-        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="password"></div>
-        
+        <div class="form-group">{{ form.email }}</div>
         <br>
-        {% for message in messages %}
-            <div class="alert alert-success d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                <div>{{ message }}</div>
-            </div>
-        {% endfor %}
+        <div class="form-group">{{ form.password1 }}</div>
+        <br>
+        <div class="form-group">{{ form.password2 }}</div>
+        {{ form.errors }}
         <div style="text-align: center;">
             <input style="padding-left: 40%; padding-right: 40%;" type="submit" value="Log In" class="btn btn-primary btn-block">
             <!-- <button style="padding-left: 40%; padding-right: 40%;" class="btn btn-primary btn-block" type="submit">Log In</button> -->
         </div>
         <br>
         <a href="#" class="forgot">Restaurar Contraseña?</a>
-        <a href="{% url 'member:register' %}" class="forgot">No tienes una cuenta? <b href="{% url 'member:register' %}"><u>inscribirse</u></b></a>
     </form>
 </div>
 
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder='Username..';
+    form_fields[2].placeholder='Email..';
+    form_fields[3].placeholder='Password..';
+    form_fields[4].placeholder='Password..';
+
+    for (var fields in form_fields){
+        form_fields[fields].className += 'form-control'
+    }
+</script>
 
 {% endblock %}
