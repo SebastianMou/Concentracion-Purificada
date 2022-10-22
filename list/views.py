@@ -4,6 +4,9 @@ from .forms import ListForm
 from django.contrib import messages
 
 # Create your views here.
+def front_page(request):
+ return render(request, 'index_base.html')
+
 def home(request):
     if request.method == 'POST':
         form = ListForm(request.POST or None)
